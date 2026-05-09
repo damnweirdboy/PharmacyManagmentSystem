@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props"
+          Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- Project Properties                                         -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B4A7C2D1-E3F8-4A9B-8C5E-1D7F3A2B6E4C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PharmacyManagementSystem</RootNamespace>
+    <AssemblyName>PharmacyManagementSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <!-- Startup object: Program class in root namespace -->
+    <StartupObject>PharmacyManagementSystem.Program</StartupObject>
+  </PropertyGroup>
+
+  <!-- Debug configuration -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <!-- Release configuration -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- Assembly References                                        -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <ItemGroup>
+    <!-- Standard .NET Framework references -->
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+
+    <!-- Entity Framework 6 — installed via NuGet (packages\EntityFramework.6.4.4\) -->
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- Source Files (Compile)                                     -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <ItemGroup>
+
+    <!-- Root -->
+    <Compile Include="Program.cs" />
+
+    <!-- Data layer -->
+    <Compile Include="Data\DatabaseConnection.cs" />
+    <Compile Include="Data\PharmacyDbContext.cs" />
+
+    <!-- Models -->
+    <Compile Include="Models\Admin.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\Medicine.cs" />
+    <Compile Include="Models\Sale.cs" />
+    <Compile Include="Models\Supplier.cs" />
+
+    <!-- Forms — each .cs paired with its .Designer.cs via DependentUpon -->
+    <Compile Include="Forms\AdminLoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AdminLoginForm.Designer.cs">
+      <DependentUpon>AdminLoginForm.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="Forms\DashboardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DashboardForm.Designer.cs">
+      <DependentUpon>DashboardForm.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="Forms\MedicinesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MedicinesForm.Designer.cs">
+      <DependentUpon>MedicinesForm.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="Forms\SuppliersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SuppliersForm.Designer.cs">
+      <DependentUpon>SuppliersForm.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="Forms\CustomersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CustomersForm.Designer.cs">
+      <DependentUpon>CustomersForm.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="Forms\SalesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SalesForm.Designer.cs">
+      <DependentUpon>SalesForm.cs</DependentUpon>
+    </Compile>
+
+    <Compile Include="Forms\ReportsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ReportsForm.Designer.cs">
+      <DependentUpon>ReportsForm.cs</DependentUpon>
+    </Compile>
+
+  </ItemGroup>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- Non-compiled / content files                               -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <ItemGroup>
+    <!-- NuGet packages list -->
+    <None Include="packages.config" />
+    <!-- SQL script — included in project for reference only -->
+    <None Include="SQL\PharmacyDB.sql" />
+  </ItemGroup>
+
+  <!-- App.config is the application configuration file -->
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <!-- MSBuild Targets                                            -->
+  <!-- ═══════════════════════════════════════════════════════════ -->
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
+  <!-- NuGet package restore target (auto-handled by VS) -->
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets"
+          Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+
+</Project>
